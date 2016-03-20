@@ -1,10 +1,10 @@
 {
-    "name": "language-assembly",
-    "version": "0.0.0",
-    "description": "Provides syntax highlighing for assembly language.",
-    "repository": "https://github.com/oliverkeeble/atom-language-assembly",
-    "license": "Public Domain",
-    "engines": {
-        "atom": ">=1.0.0 <2.0.0"
-    }
+  "name": "language-assembly",
+  "version": "0.1.0",
+  "description": "Provides syntax highlighing for assembly language.",
+  "repository": "https://github.com/oliverkeeble/atom-language-assembly",
+  "license": "Public Domain",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  }
 }
