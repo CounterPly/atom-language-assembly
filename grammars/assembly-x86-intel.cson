@@ -1,0 +1,139 @@
+"fileTypes": [
+    "asm"
+    "s"
+    "inc"
+    "asmh"
+    "mac"
+]
+
+"name": "Assembly - x86 (Intel Syntax)"
+"scopeName": "source.assembly.asm.x86.intel"
+
+"patterns": [
+    {
+        "begin": "(?i)^\\s*%\\s*if\\s+0\\b"
+        "end": "(?i)^\\s*%\\s*endif\\b"
+        "name": "comment.block.preprocessor"
+    }
+    {
+        "begin": "(?i)^\\s*%\\s*comment\\b"
+        "end": "(?i)^\\s*%\\s*endcomment\\b"
+        "name": "comment.block.preprocessor"
+    }
+    {
+        "begin": "/\\*"
+        "end": "\\*/"
+        "name": "comment.block"
+    }
+    {
+        "match": "\\s*(;|//|#).*$"
+        "name": "comment.line"
+    }
+    {
+        "match": "(?i)^\\s*%\\s*([xi]?define|undef|assign|i?defstr|deftok|strcat|strlen|substr|(end|un)?macro|endm|00?|rotate|(el)?ifn?(def|macro|ctx|idni?|id|num|str|token|empty|env)?|else|endif|include|import|pathsearch|depend|use|push|pop|(end|exit)?rep|repl|arg|stacksize|local|error|warning|fatal|line|\\!|pragma)\\b"
+        "name": "keyword.meta.preprocessor.assembly.asm.x86"
+    }
+    {
+        "match": "^\\s*(\\.?[A-Za-z_]|\\.[0-9])([0-9A-Za-z_\\.])*\\s*:"
+        "name": "entity.name.function.label"
+    }
+    {
+        "match": "(?i)(?:(?:^\\s*|\\s+|:)(j(?:n?(?:[abgl]?e|[abglcopsz])|p[eo]?|[er]?cxz)|jmp|call)\\s+((?:[er]?(?:[abcd]x|si|di|[bs]p))|r(?:1[0-5]|[0-9])))\\b"
+        "captures":
+            "1": "name": "keyword.assembly.asm.x86"
+            "2": "name": "variable.register.assembly.asm.x86"
+    }
+    {
+        "match": "(?i)(?:(?:^\\s*|\\s+|:)(j(?:n?(?:[abgl]?e|[abglcopsz])|p[eo]?|[er]?cxz)|jmp|loop(?:n?[ez])?|call)\\s+(?:(short|long|near|far)\\s+)?(?:(\\$)|((?:[A-Za-z_\\.]|\\.[0-9])(?:[0-9A-Za-z_\\.]?)+)|([01_]+[BbYy]|[0-7_]+[OoQq]|[0-9_]+[DdTt]?|[0-9A-Fa-f_]+[HhXx]|(?:0[Xx])?[0-9A-Fa-f_]+)\\b)(?:\\s*:\\s*(?:(?:\\$)|((?:\\.?[A-Za-z_]|\\.[0-9])(?:[0-9A-Za-z_]?)+)|([01_]+[BbYy]|[0-7_]+[OoQq]|[0-9_]+[DdTt]?|[0-9A-Fa-f_]+[HhXx]|(?:0[Xx])?[0-9A-Fa-f_]+)\\b))?)"
+        "captures":
+            "1": "name": "keyword.assembly.asm.x86"
+            "2": "name": "entity.name.type.assembly.asm.x86"
+            "3": "name": "keyword.punctuation.assembly.asm.x86"
+            "4": "name": "entity.name.function.identifier"
+            "5": "name": "constant.numeric"
+            "6": "name": "entity.name.function.identifier"
+            "7": "name": "constant.numeric"
+    }
+    {
+        "match": "(?i)(?x)\\b(([er]?([abcd]x|si|di|[bs]p))|[abcd][hl]|[cdefgs]s|cr[012348]|[ds]il|[bs]pl|r(1[0-5]|[0-9])[blwd]?|(st|mm|dr)[0-7]|(xmm|ymm)(1[0-5]|[0-9]))\\b"
+        "name": "variable.register.assembly.asm.x86"
+    }
+    {
+        "match": "(?i)(?x)(?:^\\s*|\\s+|:)\\b(aaa|aad|aam|aas|adcx?|add|adox|aesdec|aesdeclast|aesenc|aesenclast|aesimc|aeskeygenassist|andn?|arpl|bextr|blsi|blsmsk|blsr|bndcl|bndcu|bndcn|bndldx|bndmk|bndmov|bndstx|bound|bsf|bsr|bswap|bt[crs]?|bzhi|call|cbw|cwde|cdqe|cl(a?c|d|i|ts)|clflush|cmc|cmov(n?([abgl]?e|[abglcosz])|p[eo]?)|cmp(s[bwdq]?)?|cmp(xchg((8|16)b)?)|comis[ds]|cpuid|crc32|cvt(dq2(pd|ps)|pd2(dq|pi|ps)|pi2(pd|ps)|ps2(dq|pd|pi)|sd2(si|ss)|si2(sd|ss)|ss2(sd|si)|tpd2(dq|pi)|tps2(dq|pi)|ts(d|s)2si)|cwd|cdq|cqo|daa|das|dec|div|emms|enter|extractps|f2xm1|fabs|faddp?|fiadd|fbld|fbstp|fchs|fn?clex|fcmov(b|e|be|u|nb|ne|nbe|nu)|fcomp?p?|fu?comip?|fcos|fdecstp|fdivr?p?|fidivr?|ffree|ficomp?|fild|fincstp|fn?init|fistp?|fisttp|fld(1|l2t|l2e|pi|lg2|ln2|z|cw|env)?|fmulp?|fimul|fnop|fpa?tan|fprem1?|frndint|frstor|fn?save|fscale|fsin|fsincos|fsqrt|fstp?|fn?st(cw|env|sw)|fsubr?p?|fisubr?|ftst|fucomp?p?|fxam|fxch|fxrstor|fxsave|fxtract|fyl2x(p1)?|hlt|idiv|imul|inc|in(s[bwd]?)?|insertps|int|into|inv(d|lpg|pcid)|iret(d|q)?|j(n?([abgl]?e|[abglcosz])|p[eo]?|[er]?cxz)|jmp|lahf|lar|lddqu|ldmxcsr|lds|les|lfs|lgs|lss|lea|leave|lfence|lgdt|lidt|lldt|lmsw|lock|lod(s[bwdq]?)|loop(n?[ez])?|lsl|ltr|lzcnt|maskmovdqu|maskmovq|mfence|monitor|mov|movbe|mov[dq]|movddup|movdqa|movdqu|movdq2q|movntdqa|movntdq|movnti|movntq|movq2dq|mov(s[bwdq]?)|movshdup|movsldup|movss|movsxd?|movzx|mpsadbw|mulx?|mwait|neg|nop|not|or|out(s[bwd]?)?|pabs[bwd]|packss(wb|dw)|packus(wb|dw)|padd[bwdq]|paddu?s[bw]|palignr|pandn?|pause|pavg[bw]|pblendvb|pblendw|pclmulqdq|pcmpeq[bwdq]|pcmpestr[im]|pcmpgt[bwdq]|pcmpistr[im]|pdep|pext(r[bwdq])?|phadd(s?w|d)|phminposuw|phsub(s?w|d)|pinsr[bwdq]|pmaddubsw|pmaddwd|pmax[su][bwd]|pmin[su][bwd]|pmovmskb|pmovsx|pmovzx|pmuldq|pmulhrsw|pmulhu?w|pmull[dw]|pmuludq|pop|popad?|popcnt|popf[dq]?|por|prefetch(0|1|2|nta|w(t1)?)?|psadbw|pshuf(b|w|d|hw|lw)|psign[bwd]|psll(w|d?q?)|psra[wd]|psrl(w|d?q?)|psub[bwdq]|psubu?s[bw]|ptest|punpck([hl](bw|wd|q?dq))|push|pushad?|pushf[dq]?|pxor|rcl|rcr|rol|ror|rdfsbase|rdgsbase|rdmsr|rdpkru|rdpmc|rd(rand|seed)|rdtscp?|rep(n?[ez])?|retf?|rorx|rsm|sahf|sal|sar|shl|shr|sarx|shlx|shrx|sbb|scas[bwd]?|set(n?([abgl]?e|[abglcosz])|p[eo]?)|sfence|sgdt|shld|shrd|sidt|sldt|smsw|st(a?c|d|i)|stmxcsr|stos[bwdq]?|str|sub|swapgs|syscall|sysenter|sysexit|sysret|test|tzcnt|ucomis[ds]|ud2|unpck[hl](pd|ps)|vbroadcast|vcvtph2ps|vcvtps2ph|ver[rw]|vextract[fi]128|vfn?m(add|sub)(132|213|231)(pd|ps|sd|ss)|vfm(addsub|subadd)(132|213|231)(pd|ps)|vgather(dpd|qpd|dps|qps|dd|qd|dq|qq)|vinsert[fi]128|vmaskmov|vpblendd|vpbroadcast|vpermp?d|vpermps|vpermq|vperm2[fi]128|vpmaskmov|vpsllv[dq]|vpsravd|vpsrlv[dq]|vzero(all|upper)|f?wait|wbinvd|wrfsbase|wrgsbase|wrmsr|wrpkru|xacquire|xrelease|xabort|xadd|xbegin|xchg|xend|xgetbv|xlatb?|xor|xrstors?|xsave(c|opt|s)?|xsetbv|xtest)\\b"
+        "name": "keyword.mnemonic.assembly.asm.x86"
+    }
+    {
+        "match": "(?i)(?x)(?:^\\s*|\\s+|:)\\b((add|cmp|div|max|min|mul|round|sqrt|sub)(pd|ps|sd|ss)|(andn?|blendv?|dp|hadd|hsub|mova|movh|movl|movmsk|movnt|movu|or|shuf|vpermil|vtest|xor)(pd|ps)|(rsqrt|rcp)(ps|ss)|movhlps|movlhps)\\b"
+        "name": "keyword.assembly.asm.x86"
+    }
+    {
+        "match": "(?i)(?:^\\s*|\\s+|:)(bits|org|use(16|32|64)|equ|times|rb|incbin|seg|wrt|strict|struc|endstruc|at|istruc|iend|alignb?|even|sectalign|rel|abs|(no)?bnd|section|segment|absolute|extern|globa?l|common|cpu|ptr)\\b"
+        "name": "keyword.assembly.asm.x86"
+    }
+    {
+        "match": "(?i)(?x)(\\$+)"
+        "name": "keyword.punctuation.assembly.asm.x86"
+    }
+    {
+        "match": "(?i)\\b(r|d|res)[bwdqtoyz]\\b"
+        "name": "keyword.assembly.asm.x86"
+    }
+    {
+        "match": "(?i)\\s+(short|long|near|far)\\s*"
+        "captures":
+            "1": "name": "entity.name.type.assembly.asm.x86"
+    }
+    {
+        "match": "(?i)(\\s+|,)(byte|word|dword|qword)(?=\\b)"
+        "captures":
+            "2": "name": "entity.name.type.assembly.asm.x86"
+    }
+    {
+        "match": "(^|\\b)([A-Za-z_][0-9A-Za-z_]*)(\\.)([0-9A-Za-z_]+)(\\b)"
+        "captures":
+            "4": "name": "entity.name.variable.identifier.assembly.asm.x86"
+    }
+    {
+        "match": "\\b[01_]+[BbYy]\\b"
+        "name": "constant.numeric.binary.bin"
+    }
+    {
+        "match": "\\b[0-7_]+[OoQq]\\b"
+        "name": "constant.numeric.octal.oct"
+    }
+    {
+        "match": "\\b[0-9_]+[DdTt]?\\b"
+        "name": "constant.numeric.decimal.dec"
+    }
+    {
+        "match": "\\b([0-9A-Fa-f_]+[HhXx]|(0[Xx])[0-9A-Fa-f_]+)\\b"
+        "name": "constant.numeric.hexadecimal.hex"
+    }
+    {
+        "match": "\\b([A-Z_][0-9A-Z_]+)\\b"
+        "captures":
+            "1": "name": "constant.name"
+    }
+    {
+        "match": "<<|>>|\\+|-|\\*|/|%|<=|>=|<|>"
+        "name": "entity.operator.assembly.asm.x86"
+    }
+    {
+        "begin": "\""
+        "beginCaptures":
+            "0": "name": "string.quoted.double.punctuation.definition.begin.assembly.asm.x86"
+        "end": "\"|$"
+        "endCaptures":
+            "0": "name": "string.quoted.double.punctuation.definition.end.assembly.asm.x86"
+        "name": "string.quoted.double.punctuation.definition.assembly.asm.x86"
+    }
+    {
+        "begin": "'"
+        "beginCaptures":
+            "0": "name": "string.quoted.single.punctuation.begin.assembly.asm.x86"
+        "end": "'|$"
+        "endCaptures":
+            "0": "name": "string.quoted.single.punctuation.end.assembly.asm.x86"
+        "name": "string.quoted.single.punctuation.definition.assembly.asm.x86"
+    }
+]
