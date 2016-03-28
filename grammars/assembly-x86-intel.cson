@@ -83,7 +83,7 @@
         "name": "keyword.assembly.asm.x86.avx"
     }
     {
-        "match": "(?i)(?:^\\s*|\\s+|:)(abs(olute)?|alignb?|as|at|bits|bnd|code|common|cpu|data|define|discardable|dynamic|else|endm?|endstruc|entry|equ|even|executable|export|exte?rn|fix(ups)?|format|forward|globa?l|heap|iend|if|import|incbin|include|interpreter|irp[sv]?|istruc|linkinfo|linkremove|macro|match|nobnd|note|notpageable|org|plt|postpone|ptr|public|rb|readable|rel|rept|resource|reverse|rva|sectalign|section|seg|segment|shareable|stack|static|strict|struc|times|use(16|32|64)|virtual|writeable|wrt)\\b"
+        "match": "(?i)(?:^\\s*|\\s+|:)(abs(olute)?|alignb?|as|at|bits|bnd|code|common|cpu|data|define|discardable|dynamic|else|endm?|endstruc|entry|equ|even|executable|export|exte?rn|fix(ups)?|format|forward|globa?l|heap|iend|if|import|incbin|include|interpreter|irp[sv]?|istruc|linkinfo|linkremove|macro|match|nobnd|note|notpageable|org|plt|postpone|ptr|public|purge|rb|readable|rel|rept|resource|restore|restruc|reverse|rva|sectalign|section|seg|segment|shareable|stack|static|strict|struc|times|use(16|32|64)|virtual|writeable|wrt)\\b"
         "name": "keyword.assembly.asm.x86"
     }
     {
