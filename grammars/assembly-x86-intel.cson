@@ -91,7 +91,7 @@
         "name": "keyword.punctuation.assembly.asm.x86"
     }
     {
-        "match": "(?i)\\b(r|d|res)[bwdqtoyz]\\b"
+        "match": "(?i)\\b((r|d|res)[bwdqtoyz]|du)\\b"
         "name": "keyword.assembly.asm.x86"
     }
     {
