@@ -139,7 +139,7 @@
         # According to the NASM documentation, all of the following are
         # equivalent: 0c8h, $0c8, 0xc8, 0hc8. The one containing `$` makes this
         # very awkward.
-        "match": "(?:(\\b[0-9A-Fa-f_]+[hHxX])|(\\b0[hHxX][0-9A-Fa-f_]+)|(?:[,\\s])(\\$0[0-9A-Fa-f_]+))\\b"
+        "match": "(?:(\\b[0-9A-Fa-f_]+[hHxX])|(\\b0[hHxX][0-9A-Fa-f_]+)|(?:\\+|-|\\*|/|%|=|<|>|,|&|\\^|\\||:|~|\\(|\\[|\\s)(\\$0[0-9A-Fa-f_]+))\\b"
         "captures":
             "1": "name": "constant.numeric.hexadecimal.hex"
             "2": "name": "constant.numeric.hexadecimal.hex"
@@ -151,12 +151,12 @@
             "1": "name": "constant.name"
     }
     {
-        "match": "(?:[^$](\\${1,2})[^$])"
+        "match": "(?:(?:\\+|-|\\*|/|%|=|<|>|,|&|\\^|\\||:|~|\\(|\\[|\\s)(\\${1,2})(?=\\+|-|\\*|/|%|=|<|>|,|&|\\^|\\||:|~|\\)|\\]|\\s))"
         "captures":
             "1": "name": "keyword.punctuation"
     }
     {
-        "match": "<<|>>|\\+|-|\\*|/|%|<=|>=|<|>"
+        "match": "\\b(<<|>>|\\+|-|\\*|/|%|<=|>=|<|>)\\b"
         "name": "entity.operator"
     }
     {
