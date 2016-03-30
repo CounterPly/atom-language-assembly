@@ -116,6 +116,25 @@
         "name": "support.type"
     }
     {
+        "match": "\\b([\\+-]?0[bByY][01_]+\\.[01_]*([pP][\\+-]?[0-9_]+)?)\\b"
+        "name": "constant.numeric.binary.bin.float"
+    }
+    {
+        "match": "\\b([\\+-]?(0[dDtT])?[0-9_]+\\.[0-9_]*([eE][\\+-]?[0-9_]*)?)\\b"
+        "name": "constant.numeric.decimal.dec.float"
+    }
+    {
+        "match": "\\b([\\+-]?0[oOqQ][0-7_]+\\.[0-7_]*([pP][\\+-]?[0-9_]+)?)\\b"
+        "name": "constant.numeric.octal.oct.float"
+    }
+    {
+        "match": "(?:(?:(\\b0[hHxX][0-9A-Fa-f_]+)|(?:\\+|-|\\*|/|%|=|<|>|,|&|\\^|\\||:|~|\\(|\\[|\\s)(\\$0[0-9A-Fa-f_]+)))(\\.[0-9A-Fa-f_]*([eE][\\+-]?[0-9A-Fa-f_]*|[pP][\\+-]?[0-9]+))\\b"
+        "captures":
+            "1": "name": "constant.numeric.hexadecimal.hex.float"
+            "2": "name": "constant.numeric.hexadecimal.hex.float"
+            "3": "name": "constant.numeric.hexadecimal.hex.float"
+    }
+    {
         # According to the NASM documentation, all of the following are
         # equivalent: 11001000b, 1100_1000b, 1100_1000y, 0b1100_1000,
         # 0y1100_1000. This handles all of them. Upper/lower case both work.
