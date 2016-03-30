@@ -151,8 +151,9 @@
             "1": "name": "constant.name"
     }
     {
-        "match": "(?i)(?x)([^$]\\${1,2}[^$])"
-        "name": "keyword.punctuation.assembly.asm.x86"
+        "match": "(?i)(?x)(?:[^$](\\${1,2})[^$])"
+        "captures":
+            "1": "name": "keyword.punctuation.assembly.asm.x86"
     }
     {
         "match": "<<|>>|\\+|-|\\*|/|%|<=|>=|<|>"
