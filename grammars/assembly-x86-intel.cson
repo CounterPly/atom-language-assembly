@@ -151,7 +151,7 @@
             "1": "name": "constant.name"
     }
     {
-        "match": "(?i)(?x)(\\$+)"
+        "match": "(?i)(?x)([^$]\\${1,2}[^$])"
         "name": "keyword.punctuation.assembly.asm.x86"
     }
     {
