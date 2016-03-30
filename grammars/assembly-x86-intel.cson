@@ -142,18 +142,34 @@
         "begin": "\""
         "beginCaptures":
             "0": "name": "string.quoted.double.punctuation.definition.begin.assembly.asm.x86"
-        "end": "\"|$"
+        "end": "\""
         "endCaptures":
             "0": "name": "string.quoted.double.punctuation.definition.end.assembly.asm.x86"
         "name": "string.quoted.double.punctuation.definition.assembly.asm.x86"
+        "patterns": [
+            {
+                "include": "#escaped_characters"
+            }
+        ]
     }
     {
         "begin": "'"
         "beginCaptures":
             "0": "name": "string.quoted.single.punctuation.begin.assembly.asm.x86"
-        "end": "'|$"
+        "end": "'"
         "endCaptures":
             "0": "name": "string.quoted.single.punctuation.end.assembly.asm.x86"
         "name": "string.quoted.single.punctuation.definition.assembly.asm.x86"
+        "patterns": [
+            {
+                "include": "#escaped_characters"
+            }
+        ]
     }
 ]
+"repository":
+    "escaped_characters":
+        {
+            "match": "\\\\([\"'`\\\\?abtnvfre]|[0-8]{1,3}|x[0-9A-Fa-f]{1,2}|u[0-9A-Fa-f]{4}|U[0-9A-Fa-f]{8})"
+            "name": "constant.character.escape.assembly.asm.x86"
+        }
