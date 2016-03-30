@@ -44,15 +44,21 @@
             "2": "name": "variable.register.assembly.asm.x86"
     }
     {
-        "match": "(?i)(?:(?:^\\s*|\\s+|:)(j(?:n?(?:[abgl]?e|[abglcopsz])|p[eo]?|[er]?cxz)|jmp|loop(?:n?[ez])?|call)\\s+(?:(short|long|near|far)\\s+)?(?:(\\$)|((?:[A-Za-z_\\.]|\\.[0-9])(?:[0-9A-Za-z_\\.]?)+)|([01_]+[BbYy]|[0-7_]+[OoQq]|[0-9_]+[DdTt]?|[0-9A-Fa-f_]+[HhXx]|(?:0[Xx])?[0-9A-Fa-f_]+)\\b)(?:\\s*:\\s*(?:(?:\\$)|((?:\\.?[A-Za-z_]|\\.[0-9])(?:[0-9A-Za-z_]?)+)|([01_]+[BbYy]|[0-7_]+[OoQq]|[0-9_]+[DdTt]?|[0-9A-Fa-f_]+[HhXx]|(?:0[Xx])?[0-9A-Fa-f_]+)\\b))?)"
+        # Well, this thing is pain. There's a whole load of code duplication
+        # too. Checks for
+        #   `<branch> [modifier] <label|constant|$>[:<label|constant|$>]`
+        "match": "(?:(?:^\\s*|\\s+|:)(j(?:n?(?:[abgl]?e|[abglcopsz])|p[eo]?|[er]?cxz)|jmp|loop(?:n?[ez])?|call)\\s+(?:(short|long|near|far)\\s+)?(?:([A-Z_][0-9A-Z_]+)|([A-Za-z_][0-9A-Za-z_\\.]*|\\.[0-9A-Za-z_][0-9A-Za-z_\\.]*)|([01_]+[bByY]|0[bByY][01_]+|[0-7_]+[oOqQ]|0[oOqQ][0-7_]+|[0-9_]+[dDtT]?|0[dDtT][0-9_]+|[0-9A-Fa-f_]+[hHxX]|0[hHxX][0-9A-Fa-f_]+|\\$0[0-9A-Fa-f_]+|)|(\\$))(?=\\b)(?:\\s*:\\s*(?:([A-Z_][0-9A-Z_]+)|((?:[A-Za-z_][0-9A-Za-z_\\.]*|\\.[0-9A-Za-z_][0-9A-Za-z_\\.]*))|([01_]+[bByY]|0[bByY][01_]+|[0-7_]+[oOqQ]|0[oOqQ][0-7_]+|[0-9_]+[dDtT]?|0[dDtT][0-9_]+|[0-9A-Fa-f_]+[hHxX]|0[hHxX][0-9A-Fa-f_]+|\\$0[0-9A-Fa-f_]+|)|(\\$))(?=\\b))?)"
         "captures":
             "1": "name": "keyword.assembly.asm.x86"
             "2": "name": "entity.name.type.assembly.asm.x86"
-            "3": "name": "keyword.punctuation.assembly.asm.x86"
+            "3": "name": "constant.name"
             "4": "name": "entity.name.function.identifier"
             "5": "name": "constant.numeric"
-            "6": "name": "entity.name.function.identifier"
-            "7": "name": "constant.numeric"
+            "6": "name": "keyword.punctuation.assembly.asm.x86"
+            "7": "name": "constant.name"
+            "8": "name": "entity.name.function.identifier"
+            "9": "name": "constant.numeric"
+            "10": "name": "keyword.punctuation.assembly.asm.x86"
     }
     {
         "match": "(?i)(?x)\\b(([er]?([abcd]x|si|di|[bs]p))|[abcd][hl]|[cdefgs]s|cr[012348]|[ds]il|[bs]pl|r(1[0-5]|[0-9])[blwd]?|(st|mm|dr)[0-7]|(xmm|ymm)(1[0-5]|[0-9]))\\b"
@@ -87,10 +93,6 @@
         "name": "keyword.assembly.asm.x86"
     }
     {
-        "match": "(?i)(?x)(\\$+)"
-        "name": "keyword.punctuation.assembly.asm.x86"
-    }
-    {
         "match": "(?i)\\b((r|d|res)[bwdqtoyz]|du)\\b"
         "name": "keyword.assembly.asm.x86"
     }
@@ -114,25 +116,43 @@
         "name": "support.type.assembly.asm.x86"
     }
     {
-        "match": "\\b[01_]+[BbYy]\\b"
+        # According to the NASM documentation, all of the following are
+        # equivalent: 11001000b, 1100_1000b, 1100_1000y, 0b1100_1000,
+        # 0y1100_1000. This handles all of them. Upper/lower case both work.
+        "match": "\\b([01_]+[bByY]|0[bByY][01_]+)\\b"
         "name": "constant.numeric.binary.bin"
     }
     {
-        "match": "\\b[0-7_]+[OoQq]\\b"
+        # According to the NASM documentation, all of the following are
+        # equivalent: 310q, 310o, 0o310, 0q310. This handles all of them, also
+        # allowing for underscores (which are also valid).
+        "match": "\\b([0-7_]+[oOqQ]|0[oOqQ][0-7_]+)\\b"
         "name": "constant.numeric.octal.oct"
     }
     {
-        "match": "\\b[0-9_]+[DdTt]?\\b"
+        # According to the NASM documentation, all of the following are
+        # equivalent: 200, 0200, 0200d, 0d200.
+        "match": "\\b([0-9_]+[dDtT]?|0[dDtT][0-9_]+)\\b"
         "name": "constant.numeric.decimal.dec"
     }
     {
-        "match": "\\b([0-9A-Fa-f_]+[HhXx]|(0[Xx])[0-9A-Fa-f_]+)\\b"
-        "name": "constant.numeric.hexadecimal.hex"
+        # According to the NASM documentation, all of the following are
+        # equivalent: 0c8h, $0c8, 0xc8, 0hc8. The one containing `$` makes this
+        # very awkward.
+        "match": "(?:(\\b[0-9A-Fa-f_]+[hHxX])|(\\b0[hHxX][0-9A-Fa-f_]+)|(?:,|\\s+)(\\$0[0-9A-Fa-f_]+))\\b"
+        "captures":
+            "1": "name": "constant.numeric.hexadecimal.hex"
+            "2": "name": "constant.numeric.hexadecimal.hex"
+            "3": "name": "constant.numeric.hexadecimal.hex"
     }
     {
         "match": "\\b([A-Z_][0-9A-Z_]+)\\b"
         "captures":
             "1": "name": "constant.name"
+    }
+    {
+        "match": "(?i)(?x)(\\$+)"
+        "name": "keyword.punctuation.assembly.asm.x86"
     }
     {
         "match": "<<|>>|\\+|-|\\*|/|%|<=|>=|<|>"
