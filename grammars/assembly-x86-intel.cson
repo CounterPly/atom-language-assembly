@@ -112,7 +112,7 @@
             "4": "name": "entity.name.variable.identifier.assembly.asm.x86"
     }
     {
-        "match": "\\b(__utf(16|32)__)\\b"
+        "match": "\\b(__(utf(16|32)([lb]e)?)__)\\b"
         "name": "support.type.assembly.asm.x86"
     }
     {
