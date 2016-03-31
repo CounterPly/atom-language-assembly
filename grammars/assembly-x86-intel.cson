@@ -206,6 +206,20 @@
             }
         ]
     }
+    {
+        "begin": "`"
+        "beginCaptures":
+            "0": "name": "string.quoted.backtick.punctuation.begin"
+        "end": "`"
+        "endCaptures":
+            "0": "name": "string.quoted.backtick.punctuation.end"
+        "name": "string.quoted.backtick.punctuation.definition"
+        "patterns": [
+            {
+                "include": "#escaped_characters"
+            }
+        ]
+    }
 ]
 "repository":
     "escaped_characters":
