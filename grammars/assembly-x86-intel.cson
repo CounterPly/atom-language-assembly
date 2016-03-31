@@ -186,11 +186,6 @@
         "endCaptures":
             "0": "name": "string.quoted.double.punctuation.definition.end"
         "name": "string.quoted.double.punctuation.definition"
-        "patterns": [
-            {
-                "include": "#escaped_characters"
-            }
-        ]
     }
     {
         "begin": "'"
@@ -200,11 +195,6 @@
         "endCaptures":
             "0": "name": "string.quoted.single.punctuation.end"
         "name": "string.quoted.single.punctuation.definition"
-        "patterns": [
-            {
-                "include": "#escaped_characters"
-            }
-        ]
     }
     {
         "begin": "`"
