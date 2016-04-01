@@ -106,7 +106,7 @@
         "name": "keyword.settings"
     }
     {
-        "match": "(?i)\\s+(short|long|near|far)\\s*"
+        "match": "(?i)\\b(short|long|near|far)\\b"
         "captures":
             "1": "name": "entity.name.type"
     }
