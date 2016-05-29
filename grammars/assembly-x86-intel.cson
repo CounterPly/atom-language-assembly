@@ -30,7 +30,7 @@
         "name": "comment.line"
     }
     {
-        "match": "(?i)^\\s*%\\s*([xi]?define|ixdefine|undef|assign|i?defstr|deftok|strcat|strlen|substr|(end|un)?macro|endm|rotate|(el)?ifn?(def|macro|ctx|idni?|id|num|str|token|empty|env)?|else|endif|include|import|pathsearch|depend|use|push|pop|(end|exit)?rep|repl|arg|stacksize|local|error|warning|fatal|line|\\!|pragma)(?=\\b)"
+        "match": "(?i)^\\s*%\\s*([xi]?define|ixdefine|undef|assign|i?defstr|deftok|strcat|strlen|substr|(end|un|i)?macro|endm|rotate|(el)?ifn?(def|macro|ctx|idni?|id|num|str|token|empty|env)?|else|endif|include|import|pathsearch|depend|use|push|pop|(end|exit)?rep|repl|arg|stacksize|local|error|warning|fatal|line|\\!|pragma)(?=\\b)"
         "name": "keyword.meta.preprocessor"
     }
     {
