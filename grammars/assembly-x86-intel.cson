@@ -1,5 +1,6 @@
 "fileTypes": [
     "asm"
+    "a51"
     "s"
     "inc"
     "asmh"
