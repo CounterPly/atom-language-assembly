@@ -2,7 +2,7 @@
 
 An assembly grammar for Atom. Currently only supports Intel syntax and x86 instruction sets.
 
-![Yay, pretty colours!](https://raw.githubusercontent.com/oliverkeeble/atom-language-assembly/master/screenshot.png)
+![Yay, pretty colours!](https://raw.githubusercontent.com/a-rmz/atom-language-assembly/master/screenshot.png)
 
 ## To Do List
 * Other syntaxes
