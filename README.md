@@ -17,9 +17,13 @@ An assembly grammar for Atom. Currently only supports Intel syntax and x86 instr
 * Even more instructions.
 * Fix all the bugs.
 * Fix even more bugs.
+
 ------------
 
-## Code snippets
+## Example snippets
+
+Feel free to add your own here!
+
 ```
 '.source.assembly.asm.x86.intel':
     'Assign code origin':
