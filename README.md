@@ -1,10 +1,14 @@
 # language-assembly
+## An assembly grammar for Atom.
+------------
 
-An assembly grammar for Atom. Currently only supports Intel syntax and x86 instruction sets.
+* Supports Intel syntax and x86 instruction sets.
+* Fully supports the 8051 family. (NEW) (Yay!)
 
 ![Yay, pretty colours!](https://raw.githubusercontent.com/oliverkeeble/atom-language-assembly/master/screenshot.png)
 
-## To Do List
+------------
+### To Do List
 * Other syntaxes
 	* AT&T
 	* Others?
@@ -17,6 +21,10 @@ An assembly grammar for Atom. Currently only supports Intel syntax and x86 instr
 * Even more instructions.
 * Fix all the bugs.
 * Fix even more bugs.
+
+### Done
+* Other instruction sets:
+	* ATMEL
 
 ------------
 
