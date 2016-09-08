@@ -32,7 +32,7 @@ Check out all the snippets we have on our [Wiki](https://github.com/oliverkeeble
 - [ ] Other syntaxes
 	- [ ] AT&T
 	- [ ] Others?
-- [ ]Other instruction sets
+- [ ] Other instruction sets
 	- [ ] ARM
 	- [ ] MIPS
 	- [x] ATMEL
