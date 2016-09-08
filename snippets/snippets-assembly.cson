@@ -11,6 +11,9 @@
     'Move to Accumulator':
         'prefix': 'MOVA'
         'body': 'MOV A, $1'
+    'Indirect Move':
+        'prefix': 'IMOV'
+        'body': 'MOV @$1, $2'
     'Add':
         'prefix': 'ADD'
         'body': 'ADD A, $1'
@@ -20,3 +23,22 @@
     'Subtract (AT80S52 notation)':
         'prefix': 'SUBB'
         'body': 'SUBB A, $1'
+    'No Operation':
+        'prefix': 'NOP'
+        'body': 'NOP'
+    'Multiply':
+        'prefix': 'MUL'
+        'body': 'MUL AB'
+    'Move and Multiply':
+        'prefix': 'MOVMUL'
+        'body': '''
+            MOV A, $1
+            MOV B, $2
+            MUL AB
+        '''
+    'Define Bit':
+        'prefix': 'DB'
+        'body': '''
+            ORG $1H
+            DB $2
+        '''
